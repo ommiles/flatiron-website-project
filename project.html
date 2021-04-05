@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flatiron Project 01</title>
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/vdo7lnv.css">
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+
+    <!-- greensock -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+    
+    <!-- locomotive-scroll -->
+    <link rel="stylesheet" href="css/locomotive-scroll.css">
+    <script src="js/locomotive-scroll.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.2.5/dist/locomotive-scroll.min.css"> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.2.5/dist/locomotive-scroll.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.2.5/dist/locomotive-scroll.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.0.6/dist/locomotive-scroll.min.css" /> -->
+
+</head>
+
+<body id="js-scroll">
+    <div class="wrapper">
+
+        <!-- menu -->
+        <nav class="menu-top">
+            <div class="menu__logo">
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2300 1000">
+                        <title>Intro SVG</title>
+                        <defs>
+                            <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle">
+                                <animateTransform
+                                    attributeName="transform"
+                                    begin="0s"
+                                    dur="30s"
+                                    type="rotate"
+                                    from="0 250 250"
+                                    to="360 250 250"
+                                    repeatCount="indefinite" 
+                                    />
+                            </path>
+                        </defs>
+                            <text dy="70" textLength="1220">
+                                <textPath xlink:href="#textcircle">• hello from Compton •</textPath>
+                            </text>
+                    </svg>
+            </a>
+            </div>
+            <div class="menu__items">
+                <div class="menu__items-links "><a href="index.html">Home</a></div>
+                <div class="menu__items-links active"><a href="project.html">Projects</a></div>
+                <div class="menu__items-links"><a href="about.html">Get in Touch</a></div>
+            </div>
+        </nav>
+
+        <!-- project section -->
+        <div class="project__container" data-scroll-section>
+
+            <div class="project__container-title" data-scroll>
+                <h1 class="anime-js-title">A few bits and bobs:</h1>
+            </div>
+            <div class="project__container-subtitle" data-scroll>
+                <p>(available on Github)</p>
+            </div>
+
+            <div class="project__container-images">
+                <div class="project__image project__image-one" data-scroll data-scroll-speed="1">
+                </div>
+                <div class="project__image project__image-two" data-scroll data-scroll-speed="4">
+                </div>
+                <div class="project__image project__image-three" data-scrol data-scroll-speed="2">
+                </div>
+                <div class="project__image project__image-four" data-scroll data-scroll-speed="4">
+                </div>
+            </div>
+
+            <div class="project-next-link" data-scroll>
+                <a href="project.html">Next</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.0.4/dist/locomotive-scroll.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script>
+        // smooth scroll 
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('#js-scroll'),
+            smooth: true,
+            smoothMobile: true,
+            inertia: 0.75
+        });
+
+        // project title animation 
+        var textWrapper = document.querySelector('.anime-js-title');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline()
+            .add({
+                targets: '.anime-js-title .letter',
+                translateY: [60, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 600 + 30 * i
+            });
+
+        // project subtitle animation 
+        TweenMax.from(".project__container-subtitle", 2, {
+            y: 10,
+            opacity: 0,
+            ease: Expo.easeInOut
+        });
+
+        // project image fade 
+        TweenMax.from(".project__image-one", 2, {
+            opacity: 0,
+            ease: Expo.easeInOut
+        });
+    </script>
+</body>
+</html>
