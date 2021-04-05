@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flatiron Project 01</title>
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/vdo7lnv.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!-- greensock -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="js/SplitText.min.js"></script>
+
+</head>
+<body id="js-scroll">
+    <div class="wrapper">
+        <!-- menu -->
+        <nav class="menu-top">
+            <div class="menu__logo">
+                <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2300 1000">
+                        <title>Intro SVG</title>
+                        <defs>
+                            <path d="M50,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle">
+                                <animateTransform
+                                    attributeName="transform"
+                                    begin="0s"
+                                    dur="30s"
+                                    type="rotate"
+                                    from="0 250 250"
+                                    to="360 250 250"
+                                    repeatCount="indefinite" 
+                                    />
+                            </path>
+                        </defs>
+                            <text dy="70" textLength="1220">
+                                <textPath xlink:href="#textcircle">• designed in Compton •</textPath>
+                            </text>
+                    </svg>
+            </a>
+            </div>
+            <div class="menu__items">
+                <div class="menu__items-links"><a href="index.html">Home</a></div>
+                <div class="menu__items-links"><a href="project.html">Projects</a></div>
+                <div class="menu__items-links active"><a href="about.html">Get in Touch</a></div>
+            </div>
+        </nav>
+    </div>
+
+        <!-- about-section -->
+        <div class="about__container" data-scroll-section>
+            <p class="about__container-data" data-scroll>Hi! My name is <span>Miles</span> and I'm a web developer in <span>sunny</span> Compton, CA.</p>
+
+            <p data-scroll>If you have any questions or would like to have a chat, don't hesitate to <span
+                    class="about__container-contact-link"><a href="mailto:miles@ommiles.com" target="_blank">get
+                        in touch.</a></span></p>
+
+            <p class="about__container-link" data-scroll>* If you'd like to join my <a href="mailto:miles@ommiles.com"
+                    target="_blank"><br><em>coffee club</em><br></a>please do reach out!</p>
+        </div>
+
+        <div class="cursor-follow"></div>
+    </div>
+
+    <script>
+
+        // div following mouse 
+        TweenMax.from(".cursor-follow", 2, {
+            delay: 1,
+            opacity: 0
+        });
+
+        follower = document.querySelector('.cursor-follow');
+
+        posX = 0;
+        posY = 0;
+        mouseX = 0;
+        mouseY = 0;
+
+        TweenMax.to({}, 0.016, {
+            repeat: -1,
+            onRepeat: function () {
+                posX += (mouseX - posX) / 9;
+                posY += (mouseY - posY) / 9;
+
+                TweenMax.set(follower, {
+                    css: {
+                        left: posX - 40,
+                        top: posY - 40,
+                    }
+                });
+            }
+        });
+
+        document.addEventListener("mousemove", function (e) {
+            mouseX = e.pageX;
+            mouseY = e.pageY;
+        });
+    </script>
+</body>
+</html>
